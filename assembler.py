@@ -1,7 +1,6 @@
 #register dictionary 
 from re import I
 
-
 regs = {
     'R0' : '0000',
     'R1' : '0001',
@@ -22,26 +21,26 @@ regs = {
 }
 
 #define opcodes and 
-op_ADD = '00000'
-op_LOAD = '00001'
-op_MVFR = '00010'
-op_MVTO = '00011'
-op_OR = '00100'
-op_XOR = '00101'
-op_XORR = '00110'
-op_AND = '00111'
-op_STR = '01000'
-op_SLT = '01001'
-op_SEQ = '01010'
-op_BTRU = '01011'
-op_SUB = '01100'
-op_NOT = '01101'
-op_LUT = '1000'
-op_ADDI = '1001'
-op_SUBI = '1010'
-op_B = '1011'
-op_LSLI = '1100'
-op_LSRI = '1101'
+op_ADD = '10000'
+op_LOAD = '10001'
+op_MVFR = '10010'
+op_MVTO = '10011'
+op_OR = '10100'
+op_XOR = '10101'
+op_XORR = '10110'
+op_AND = '10111'
+op_STR = '11000'
+op_SLT = '11001'
+op_SEQ = '11010'
+op_BTRU = '11011'
+op_SUB = '11100'
+op_NOT = '11101'
+op_LUT = '0000'
+op_ADDI = '0001'
+op_SUBI = '0010'
+op_B = '0011'
+op_LSLI = '0100'
+op_LSRI = '0101'
 op_HALT = '111111111'
 
 
@@ -120,18 +119,19 @@ with(
         
         elif inst[0] == 'HALT':
             writeline += op_HALT
-            
+        
         if(inst[0] != 'B' and inst[0] != 'BTRU'):
-          if(inst[1][0] == '#' ):
-            num = int(inst[1][1:]))[2:]
-            if num < 16:
-                writeline += format(num, 05b)
+            if(inst[1][0] == '#' ):
+                num_binary = bin(int(inst[1][1:]))[2:]
+                writeline += num_binary.zfill(5)
             else:
-                writeline += bin(num)
+         	    writeline += regs[inst[1]]
         else:
-         	writeline += regs[inst[1]]
-		
-       
+            if(inst[0] == 'B'):
+                writeline += "00000"
+            else:
+                writeline += "0000"
+
         writeline += '\n'
         output.write(writeline)
         line = input.readline()
