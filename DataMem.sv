@@ -12,13 +12,15 @@
 // This memory can hold `(2**A) * W` bits of data.
 //
 // WI22 is a 256-entry single-byte (8 bit) data memory.
-module DataMem #(parameter W=8, A=8) (
+module DataMem (
   input                 Clk,
                         Reset,
                         WriteEn,
-  input       [A-1:0]   DataAddress, // A-bit-wide pointer to 256-deep memory
-  input       [W-1:0]   DataIn,      // W-bit-wide data path, also
-  output logic[W-1:0]   DataOut
+                        MemToReg,
+ input [7:0]            ALUout,
+  input       [7:0]   DataAddress, // A-bit-wide pointer to 256-deep memory
+  input       [7:0]   DataIn,      // W-bit-wide data path, also
+  output logic[7:0]   DataOut
 );
 
 // 8x256 two-dimensional array -- the memory itself
@@ -26,7 +28,8 @@ logic [W-1:0] Core[0:2**A-1];
 
 // reads are combinational
 always_comb
-  DataOut = Core[DataAddress];
+    DataOut = Core[DataAddress];
+
 
 // Load the initial contents of memory
 initial begin

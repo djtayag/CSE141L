@@ -1,18 +1,30 @@
-module ProgCtr #(parameter A=10)(
+module ProgCtr(
   input                Start,       // begin program
+                       Reset,       // Reset signal
                        Clk,         // PC can change on pos. edges only
                        Branch,
-  input        [A-1:0] Target,      // target branch address
-  output logic [A-1:0] ProgCtr      // program counter
+                       ConditionalBranch,
+  input        [7:0] Target,      // target branch address
+  output logic [7:0] ProgCtr      // program counter
 );
 
+logic start_ready;
+
 always_ff @(posedge Clk) begin
-  if(Start)
-    ProgCtr <= 0;
-  else if(Branch)
+  if (Reset) begin
+      start_ready <= 0;
+      ProgCtr <= 0;
+  end
+  else if(Start) begin
+      start_ready <= 1;
+      ProgCtr <= 0;
+  end
+  else if(Branch && ConditionalBranch)
     ProgCtr <= Target;
-  else
+  else if (start_ready)
     ProgCtr <= ProgCtr + 'b1;
+  else
+    ProgCtr <= 0;
 end
 
 endmodule

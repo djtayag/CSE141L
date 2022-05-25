@@ -1,10 +1,10 @@
 //  A: Number of address bits in instruction memory
 //  W: Width of instruction memory entry
 
-// instsructions are 9 bits wide, we can have up to 2^10 instructions in InstROM
-module InstROM #(parameter A=10, W=9) (
-  input        [A-1:0] InstAddress,
-  output logic [W-1:0] InstOut
+// instsructions are 9 bits wide, we have <= 2^8 instructions
+module InstROM (
+  input        [7:0] InstAddress,
+  output logic [8:0] InstOut
 );
 
 // Sample instruction format:
@@ -61,7 +61,7 @@ end
 
 
 // Declare 2-dimensional array, W bits wide, 2**A words deep
-logic [W-1:0] inst_rom[2**A];
+logic [8:0] inst_rom[256];
 
 // This is where memory is read
 always_comb InstOut = inst_rom[InstAddress];

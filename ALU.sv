@@ -1,12 +1,12 @@
-module ALU #(parameter W=8)(
-  input        [W-1:0]   AccumulatorIn,       // data inputs
-                         OperandIn,
-                         ImmediateIn,
+module ALU (
+  input       [7:0]     AccumulatorIn,       // data inputs
+                        OperandIn,
+input          [4:0]          ImmediateIn,
   input                  Type,          // type = 1 means R Type; 0 means I/special type
   input        [3:0]     RTypeOP,
   input        [2:0]     ITypeOP,
-  output logic [W-1:0]   Out,          // data output
-  output logic           Branch        // branch signal
+  output logic [7:0]   Out,          // data output
+  output logic           ConditionalBranch        // branch signal
 );
 
 always_comb begin
@@ -19,9 +19,6 @@ always_comb begin
             // LOAD
             1:
                 Out = OperandIn;
-            // MVFR
-            2:
-                Out = AccumulatorIn;
             // MVTO
             3:
                 Out = OperandIn;
@@ -49,40 +46,43 @@ always_comb begin
             // BTRU
             11: begin
                 if (AccumulatorIn == 1)
-                    Branch = 1;
+                    ConditionalBranch = 1;
                 else
-                    Branch = 0;
+                    ConditionalBranch = 0;
             end
-            // CLR
+            // SUB
             12:
-                Out = 0; // TODO
+                Out = AccumulatorIn - OperandIn;
             // NOT
-            13:
-                Out = 0; // TODO
+            13: begin
+                Out = AccumulatorIn;
+                Out[OperandIn] = 1 - Out[OperandIn];
+            end
+            default:
+                Out = 0;
             endcase
     end
 
     // Handle I-Type instrsuctions
     if(!Type) begin
         case(ITypeOP)
-            // LUT
-            0:
-                Out = 0; // TODO
             // ADDI
             1:
-                Out = AccumulatorIn + ImmediateIn;
+                Out = AccumulatorIn + {3'b000,ImmediateIn};
             // SUBI
             2:
-                Out = AccumulatorIn - ImmediateIn;
+                Out = AccumulatorIn - {3'b000,ImmediateIn};
             // B (unconditional branch)
             3:
-                Branch = 1;
+                ConditionalBranch = 1;
             // LSLI
             4:
                 Out = AccumulatorIn << ImmediateIn;
             // LSRI
             5:
                 Out = AccumulatorIn >> ImmediateIn;
+            default:
+                Out = 0;
             endcase
     end
 end
