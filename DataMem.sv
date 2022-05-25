@@ -1,53 +1,34 @@
-// Create Date:    2017.01.25
-// Design Name:    CSE141L
-// Module Name:    DataMem
-// Last Update:    2022.01.13
-
-// Memory can only read _or_ write each cycle, so there is justi a single
-// address pointer for both read and write operations.
-//
-// Parameters:
-//  - A: Address Width. This controls the number of entries in memory
-//  - W: Data Width. This controls the size of each entry in memory
-// This memory can hold `(2**A) * W` bits of data.
-//
-// WI22 is a 256-entry single-byte (8 bit) data memory.
 module DataMem (
-  input                 Clk,
-                        Reset,
-                        WriteEn,
-                        MemToReg,
- input [7:0]            ALUout,
-  input       [7:0]   DataAddress, // A-bit-wide pointer to 256-deep memory
-  input       [7:0]   DataIn,      // W-bit-wide data path, also
-  output logic[7:0]   DataOut
+    input              Clk,
+                       Reset,
+                       WriteEn,
+                       MemToReg,
+    input        [7:0] ALUdata,     // Data from the ALU
+                       DataAddress, // Memory address
+                       DataIn,      // Data to write into memory
+
+    output logic [7:0] DataOut      // Output of DataMemory
 );
 
-// 8x256 two-dimensional array -- the memory itself
-logic [W-1:0] Core[0:2**A-1];
+logic [8:0] Core[256];
 
-// reads are combinational
-always_comb
-    DataOut = Core[DataAddress];
-
-
-// Load the initial contents of memory
-initial begin
-  $readmemh("../data_mem.hex", Core);
+always_comb begin
+    // Output the ALU data or the DataMem data?
+    if (MemToReg)
+        DataOut = Core[DataAddress];
+    else
+        DataOut = ALUin;
 end
 
-// writes are sequential
-always_ff @ (posedge Clk)
-  /*
-  // Reset response is needed only for initialization.
-  // (see inital $readmemh above for another choice)
-  //
-  // If you do not need to preload your data memory with any constants,
-  // you may omit the `if (Reset) ... else` and go straight to `if(WriteEn)`
-  */
+// Populating the initial contents of memory
+initial begin
+    $readmemh("../data_mem.hex", Core);
+end
 
-  if(WriteEn) begin
-    // Do the actual writes
-    Core[DataAddress] <= DataIn;
-  end
+always_ff @( posedge Clk ) begin
+    // Write to memory when the WriteEn signal is high
+    if (WriteEn)
+        Core[DataAddress] <= DataIn;
+end
+
 endmodule

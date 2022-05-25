@@ -1,17 +1,18 @@
 module ALU (
-  input       [7:0]     AccumulatorIn,       // data inputs
-                        OperandIn,
-input          [4:0]          ImmediateIn,
-  input                  Type,          // type = 1 means R Type; 0 means I/special type
-  input        [3:0]     RTypeOP,
-  input        [2:0]     ITypeOP,
-  output logic [7:0]   Out,          // data output
-  output logic           ConditionalBranch        // branch signal
+    input        [7:0] AccumulatorIn,
+                       OperandIn,
+    input        [4:0] ImmediateIn,
+    input              Type,
+    input        [3:0] RTypeOP,
+    input        [2:0] ITypeOP,
+
+    output logic [7:0] Out,
+    output logic       ConditionalBranch
 );
 
 always_comb begin
-    // Handle R-Type instructions
-    if(Type) begin
+    // Handling R-Type Instructions (Type = 0)
+    if (!Type) begin
         case(RTypeOP)
             // ADD
             0:
@@ -63,8 +64,8 @@ always_comb begin
             endcase
     end
 
-    // Handle I-Type instrsuctions
-    if(!Type) begin
+    // Handle I/Special-Type Instructions (Type = 1)
+    if (Type) begin
         case(ITypeOP)
             // ADDI
             1:

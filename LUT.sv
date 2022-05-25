@@ -1,10 +1,6 @@
-// Design Name:    CSE141L
-// Module Name:    LUT
-
-// Lookup table, stores branching addresses
-
-module LUT(
+module LUT (
   input        [3:0] Addr,
+  
   output logic [7:0] Target
 );
 

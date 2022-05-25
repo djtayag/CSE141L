@@ -19,38 +19,38 @@ module ALU_tb ();
         OperandIn = 55; //      8'b0011_0111
 
         // testing R TYPE OPERATIONS
-        Type = 1;
+        Type = 0;
         // add instruction
         RTypeOP = 0;
         #10ns
-        $display("Out = 54? %d", Out);
+        $display("add Out = 54? %d", Out);
         #10ns
 
         // Load
         RTypeOP = 1;
         #10ns
-        $display("Out = 55? %d", Out);
+        $display("load Out = 55? %d", Out);
 
         #10ns
 
         // MVTO
         RTypeOP = 3;
         #10ns
-        $display("Out = 55? %d", Out);
+        $display("mvto Out = 55? %d", Out);
 
         #10ns
 
         // OR
         RTypeOP = 4;
         #10ns
-        $display("Out = 255? %d", Out);
+        $display("or Out = 255? %d", Out);
 
         #10ns
 
         // XOR
         RTypeOP = 5;
         #10ns
-        $display("Out = 200? %d", Out);
+        $display("xor Out = 200? %d", Out);
         #10ns;
 
 
@@ -110,7 +110,7 @@ module ALU_tb ();
 
         // Testing I type instsructions
 
-        Type = 0;
+        Type = 1;
 
         AccumulatorIn = 100;
         ImmediateIn = 20;
