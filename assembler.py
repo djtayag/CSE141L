@@ -34,7 +34,7 @@ op_STR = '01000'
 op_SLT = '01001'
 op_SEQ = '01010'
 op_BTRU = '01011'
-op_CLR = '01100'
+op_SUB = '01100'
 op_NOT = '01101'
 op_LUT = '1000'
 op_ADDI = '1001'
@@ -67,10 +67,62 @@ with(
         elif inst[0] == 'MVFR':
             writeline += op_MVFR
 
+        elif inst[0] == 'MVTO':
+            writeline += op_MFTO
+        
+        elif inst[0] == 'OR':
+            writeline += op_OR
+        
+        elif inst[0] == 'XOR':
+            writeline += op_XOR
+        
+        elif inst[0] == 'XORR':
+            writeline += op_XORR
+        
+        elif inst[0] == 'AND':
+            writeline += op_AND
+        
+        elif inst[0] == 'STR':
+            writeline += op_STR
+        
+        elif inst[0] == 'SLT':
+            writeline += op_SLT
+        
+        elif inst[0] == 'SEQ':
+            writeline += op_SEQ
+        
+        elif inst[0] == 'BTRU':
+            writeline += op_BTRU
+        
+        elif inst[0] == 'SUB':
+            writeline += op_SUB
+        
+        elif inst[0] == 'NOT':
+            writeline += op_NOT
+        
+        elif inst[0] == 'LUT':
+            writeline += op_LUT
+        
+        elif inst[0] == 'ADDI':
+            writeline += op_ADDI
+        
+        elif inst[0] == 'SUBI':
+            writeline += op_SUBI
+        
+        elif inst[0] == 'B':
+            writeline += op_B
+        
+        elif inst[0] == 'LSLI':
+            writeline += op_LSLI
+
+        elif inst[0] == 'LSRI':
+            writeline += op_LSRI
+        
+        elif inst[0] == 'HALT':
+            writeline += op_HALT
+        
         writeline += regs[inst[1]]
 
         writeline += '\n'
         output.write(writeline)
         line = input.readline()
-
-
