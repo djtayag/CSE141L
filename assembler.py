@@ -123,11 +123,16 @@ with(
             
         if(inst[0] != 'B' and inst[0] != 'BTRU'):
           if(inst[1][0] == '#' ):
-            writeline+= bin(int(inst[1][1:]))[2:]
-           else:
+            num = int(inst[1][1:]))[2:]
+            if num < 16:
+                writeline += format(num, 05b)
+            else:
+                writeline += bin(num)
+            else:
          	writeline += regs[inst[1]]
 		
        
         writeline += '\n'
         output.write(writeline)
         line = input.readline()
+
