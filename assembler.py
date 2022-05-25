@@ -68,7 +68,7 @@ with(
             writeline += op_MVFR
 
         elif inst[0] == 'MVTO':
-            writeline += op_MFTO
+            writeline += op_MVTO
         
         elif inst[0] == 'OR':
             writeline += op_OR
@@ -120,9 +120,14 @@ with(
         
         elif inst[0] == 'HALT':
             writeline += op_HALT
-        
-        writeline += regs[inst[1]]
-
+            
+        if(inst[0] != 'B' and inst[0] != 'BTRU'):
+          if(inst[1][0] == '#' ):
+            writeline+= bin(int(inst[1][1:]))[2:]
+           else:
+         	writeline += regs[inst[1]]
+		
+       
         writeline += '\n'
         output.write(writeline)
         line = input.readline()
