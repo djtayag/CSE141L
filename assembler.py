@@ -128,11 +128,10 @@ with(
                 writeline += format(num, 05b)
             else:
                 writeline += bin(num)
-            else:
+        else:
          	writeline += regs[inst[1]]
 		
        
         writeline += '\n'
         output.write(writeline)
         line = input.readline()
-
