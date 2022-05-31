@@ -1,0 +1,64 @@
+C:/Users/Darryl/Desktop/141L-test/InstROM.sv {1 {vlog -work work -vopt -sv -stats=none C:/Users/Darryl/Desktop/141L-test/InstROM.sv
+Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+-- Compiling module InstROM
+
+Top level modules:
+	InstROM
+
+} {} {}} C:/Users/Darryl/Desktop/141L-test/TopLevel_tb.sv {1 {vlog -work work -vopt -sv -stats=none C:/Users/Darryl/Desktop/141L-test/TopLevel_tb.sv
+Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+-- Compiling module TopLevel_tb
+
+Top level modules:
+	TopLevel_tb
+
+} {} {}} C:/Users/Darryl/Desktop/141L-test/DataMem.sv {1 {vlog -work work -vopt -sv -stats=none C:/Users/Darryl/Desktop/141L-test/DataMem.sv
+Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+-- Compiling module DataMem
+
+Top level modules:
+	DataMem
+
+} {} {}} C:/Users/Darryl/Desktop/141L-test/ProgCtr.sv {1 {vlog -work work -vopt -sv -stats=none C:/Users/Darryl/Desktop/141L-test/ProgCtr.sv
+Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+-- Compiling module ProgCtr
+
+Top level modules:
+	ProgCtr
+
+} {} {}} C:/Users/Darryl/Desktop/141L-test/LUT.sv {1 {vlog -work work -vopt -sv -stats=none C:/Users/Darryl/Desktop/141L-test/LUT.sv
+Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+-- Compiling module LUT
+
+Top level modules:
+	LUT
+
+} {} {}} C:/Users/Darryl/Desktop/141L-test/Ctrl.sv {1 {vlog -work work -vopt -sv -stats=none C:/Users/Darryl/Desktop/141L-test/Ctrl.sv
+Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+-- Compiling module Ctrl
+
+Top level modules:
+	Ctrl
+
+} {} {}} C:/Users/Darryl/Desktop/141L-test/RegFile.sv {1 {vlog -work work -vopt -sv -stats=none C:/Users/Darryl/Desktop/141L-test/RegFile.sv
+Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+-- Compiling module RegFile
+
+Top level modules:
+	RegFile
+
+} {} {}} C:/Users/Darryl/Desktop/141L-test/ALU.sv {1 {vlog -work work -vopt -sv -stats=none C:/Users/Darryl/Desktop/141L-test/ALU.sv
+Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+-- Compiling module ALU
+
+Top level modules:
+	ALU
+
+} {} {}} C:/Users/Darryl/Desktop/141L-test/TopLevel.sv {1 {vlog -work work -vopt -sv -stats=none C:/Users/Darryl/Desktop/141L-test/TopLevel.sv
+Questa Intel Starter FPGA Edition-64 vlog 2021.2 Compiler 2021.04 Apr 14 2021
+-- Compiling module TopLevel
+
+Top level modules:
+	TopLevel
+
+} {} {}}

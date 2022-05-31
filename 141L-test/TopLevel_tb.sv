@@ -44,7 +44,7 @@ initial begin
 
   // launch program in DUT
   #10 Req = 0;
-
+  #1
   // Wait for done flag, then display results
   wait (Ack);
   #10 $display("------------------------------------------");

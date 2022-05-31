@@ -7,8 +7,8 @@ module TopLevel (
 );
 
 // InstROM outputs
-wire  [8:0] IR1_InstOut_out;     // 9-bit instruction
-logic [8:0] Active_InstOut;      // The active instruction being executed
+wire [8:0] IR1_InstOut_out;     // 9-bit instruction
+logic [8:0] Active_InstOut;     // The instruction to execute
 
 // ProgCtr outputs
 wire [7:0] PC1_ProgCtr_out;
@@ -75,8 +75,10 @@ end
 
 always_comb begin
   should_run_processor = ever_start & ~Start;
-  Active_InstOut = (should_run_processor) ? 9'b1_1111_1111 : IR1_InstOut_out;
+  Active_InstOut = (should_run_processor) ? IR1_InstOut_out : 9'b111_111_111;
 end
+
+assign Ack = should_run_processor & Ctrl1_Ack_out;
 
 // Ctrl -- directs operations and raises signals based on instructions
 Ctrl Ctrl1 (
@@ -129,7 +131,12 @@ DataMem DM1 (
     .DataOut(DM1_DataOut_out)
 );
 
-// Assigning Ack signal from Ctrl to TopLevel
-assign Ack = Ctrl1_Ack_out;
+logic[15:0] CycleCount;
+
+always_ff @(posedge Clk)
+  if (Reset)   
+    CycleCount <= 0;
+  else if(Ctrl1_Ack_out == 0) 
+    CycleCount <= CycleCount + 'b1;
 
 endmodule

@@ -9,7 +9,7 @@ logic [8:0] inst_rom[256];
 always_comb InstOut = inst_rom[InstAddress];
 
 initial begin
-    $readmemb("machine_code.txt", inst_rom); 
+    $readmemb("prog1.txt", inst_rom); 
 end
 
 endmodule
