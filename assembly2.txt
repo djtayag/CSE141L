@@ -1,12 +1,12 @@
 SUB R0		
 MVFR R14		
 MVFR R15			
-ADDI #30		
+ADDI #31		
 ADD R2			
 LOAD R0			
 MVFR R3				
 SUB R0		
-ADDI #31		
+ADDI #30		
 ADD R2		
 LOAD R0			
 MVFR R4			
