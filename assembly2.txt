@@ -45,7 +45,7 @@ ADDI #31
 ADDI #31			
 ADDI #31			
 ADDI #31		
-ADDI #15				
+ADDI #18				
 MVFR R5		
 AND R3			
 MVFR R6			
