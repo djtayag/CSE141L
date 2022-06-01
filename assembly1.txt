@@ -1,10 +1,10 @@
 LOAD R2
-MVFR R3
+MVFR R4
 SUB R0
 ADDI #1	
 ADD R2	
 LOAD R0			
-MVFR R4			
+MVFR R3		
 MVTO R4			
 LSRI #4			
 XOR R3			
@@ -65,7 +65,7 @@ OR R11
 OR R5		
 MVFR R5		
 SUB R0			
-ADDI #30		
+ADDI #31		
 ADD R2		
 MVFR R6		
 MVTO R5		
@@ -97,7 +97,7 @@ OR R14
 OR R15			
 MVFR R5			
 SUB R0 			
-ADDI #31			
+ADDI #30			
 ADD R2			
 MVFR R6		
 MVTO R5			
