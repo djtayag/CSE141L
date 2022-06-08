@@ -10,7 +10,7 @@ module ALU (
     output logic       ConditionalBranch
 );
 
-always_comb begin
+    always @ (*) begin
     // Handling R-Type Instructions (Type = 0)
     if (!Type) begin
         case(RTypeOP)
