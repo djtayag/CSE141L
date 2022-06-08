@@ -28,7 +28,7 @@ much easier.
 
 c. Inform us on how you distributed your work.
 
-Darryl (Estimated Hours spent - 80):
+Darryl (Estimated Hours spent - 90):
 
 Wrote the assembly code for all programs, revised pseudocode for
 Program 2, designed all ISA operations specifications (ADD, LSRI, STR, etc.),
