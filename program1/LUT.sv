@@ -14,8 +14,8 @@ always_comb begin
     4'b0100: Target = 227; // Program 2 &[all_correct]
     4'b0101: Target = 195; // Program 2 &[one_or_none_wrong]
     4'b0110: Target = 165; // Program 2 &[err_MSW]
-    4'b0111: Target = 4; // Program 3 &[Loop]
-    4'b1000: Target = 129; // Program 3 &[last_entry]
+    4'b0111: Target = 6; // Program 3 &[Loop]
+    4'b1000: Target = 131; // Program 3 &[last_entry]
     default: Target = 0;
   endcase
 
