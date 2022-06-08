@@ -32,8 +32,9 @@ Darryl (Estimated Hours spent - 80):
 
 Wrote the assembly code for all programs, revised pseudocode for
 Program 2, designed all ISA operations specifications (ADD, LSRI, STR, etc.),
-wrote the SystemVerilog code for all modules including the test benches, and
-tested the functionality of all programs in Questa. 
+wrote the SystemVerilog code for all modules including the test benches, 
+wrote the individual component specification for all components in the report, 
+and tested the functionality of all programs in Questa. 
 
 Asad (Estimated Hours spent - ):
 
