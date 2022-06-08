@@ -18,13 +18,12 @@ original messages (Program 2), and recognize patterns (Program 3). Some
 features that we wanted to implement and really take advantage of in our design
 was the accumulator architecture! Our ISA takes advantage of the accumulator
 register by having shorter assembly instructions (only one operand in
-instruction) and it allowed us to use more bits in our instruciton which
-helped us a lot since we were restricted on 9 bits. Another feature of our ISA
-that works is the LUT for storing branching addresses. By using the LUT to
-store all our branching addresses, we did not have to bother doing any
-arithmetic operations to calculate branch addresses, instead we could just
-directly go to branch addresses through our preloaded LUT. It made things so
-much easier.
+instruction) and it freed up more bits in our instruciton which helped us
+a lot since we were restricted on 9 bits. Another feature of our ISA that
+works is the LUT for storing branching addresses. By using the LUT to store
+all our branching addresses, we did not have to bother doing any arithmetic
+operations to calculate branch addresses, instead we could just directly go
+to branch addresses through our preloaded LUT. It made things so much easier.
 
 c. Inform us on how you distributed your work.
 
