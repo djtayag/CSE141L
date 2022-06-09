@@ -28,14 +28,17 @@ to branch addresses through our preloaded LUT. It made things so much easier.
 c. Inform us on how you distributed your work.
 
 Darryl (Estimated Hours spent - 100):
-
 Wrote the assembly code for all programs, revised pseudocode for
 Program 2, designed all ISA operations specifications (ADD, LSRI, STR, etc.),
 wrote the SystemVerilog code for all modules including the test benches, 
 wrote the individual component specification for all components in the report, 
 and tested the functionality of all programs in Questa. 
 
-Asad (Estimated Hours spent - ):
+Muhammad Imran  (Estimated Hours spent ~ 50-60 ): 
+wrote original load/store ISA and assisted with original pseudocode. Assisted 
+Darryl with implementation of accumulator architecture. Wrote pseudocode for 
+accumulator architecture. Designed diagram for CPU. Wrote SV code for modules. 
+Wrote assembler. 
 
 Mohammed Harris Master (Estimated Hours spent - 90):
 Wrote the pseudocode for all the programs. Decided on how to impelment the 9 bits.
