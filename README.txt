@@ -35,10 +35,11 @@ wrote the SystemVerilog code for all modules including the test benches,
 wrote the individual component specification for all components in the report, 
 and tested the functionality of all programs in Questa. 
 
-Muhammad Imran  (Estimated Hours spent ~ 50-60 ): wrote original load/store
-ISA and assisted with original pseudocode. Assisted Darryl with implementation of 
-accumulator architecture. Wrote pseudocode for accumulator architecture. 
-Designed diagram for CPU. Wrote SV code for modules. Wrote assembler. 
+Asad (Estimated Hours spent - ):
 
-Mohammad Master (Estimated Hours spent - ):
-
+Mohammed Harris Master (Estimated Hours spent - 90):
+Wrote the pseudocode for all the programs. Decided on how to impelment the 9 bits.
+Assisted Darryl with writing the assembly code. Helped design all ISA operations. 
+Wrote the SystemVerilog code for testbenches. Worked on the Google Doc in forming
+the Lab Report. Worked on creating the assembler. Wrote components regarding the 
+report. Debugged all programs. Tested all programs through Questa. 
