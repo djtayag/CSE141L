@@ -36,7 +36,7 @@ wrote the individual component specification for all components in the report,
 and tested the functionality of all programs in Questa. 
 
 Muhammad Imran  (Estimated Hours spent ~ 50-60 ): wrote original load/store
-ISA and assited with original pseudocode. Assisted Darryl with implementation of 
+ISA and assisted with original pseudocode. Assisted Darryl with implementation of 
 accumulator architecture. Wrote pseudocode for accumulator architecture. 
 Designed diagram for CPU. Wrote SV code for modules. Wrote assembler. 
 
