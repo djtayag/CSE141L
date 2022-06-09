@@ -1,6 +1,6 @@
 How to use assembler.py
 
-1. Install python
+1. Install the latest version of python
 
 2. Place the assembler.py and your assembly text file in the same directory.
 NOTE: The assembly text file must be named 'assembly.txt'
