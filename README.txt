@@ -9,24 +9,14 @@ explains how to run our assembler.py.
 Inside each of the program folders, you will find the SystemVerilog modules and
 some test benches (ALU_tb.sv, ProgCtr_tb.sv, TopLevel_tb.sv). Each program
 folder will also have its respective assembly and machine code text files.
-
-I tried to include all the testing scripts and transcripts that we have for each
-program, but for whatever reason, the GradeScope submission runs too long when I
-include the transcripts and testing hex files. So I removed the testing stuff
-out of the submission and instead published pushed them into a GitHub repo. 
-
-**Inside GitHub repo**
-
-If you would like to see the testing that we did, you can visit the repo at 
-https://github.com/djtayag/CSE141L. In each of the program files in the repo,
-you will find python scripts that we used for testing. The scripts generate ALL 
-possible inputs and their respective expected outputs. The hex files produced 
-from these scripts were fed into the TopLevel_tb of each program and exhaustively 
-tested. The programs passed ALL the tests! In program3 folder, you will find 
-a prog3_input.hex file which is the input data we used to test our implementation 
-with. Our program3 runs as expected with the test cases provided to it. All the 
-transcripts for testing can be viewed in the transcript.txt files in each program 
-folder.
+There is a testing folder where you can find python scripts that we used for 
+testing. The scripts generate ALL possible inputs and their respective expected 
+outputs. The text files produced from these scripts were fed into the TopLevel_tb 
+of each program and exhaustively tested. The programs passed ALL the tests! In the
+prog3_test folder, you will find a prog3_input.hex file which is the input data we
+used to test our implementation with. Our program3 runs as expected with the test 
+cases provided to it. All the transcripts for testing can be viewed in the 
+transcript.txt files in each program test folder.
 
 b. Explain which programs/features work, and which programs/features don't work.
 
