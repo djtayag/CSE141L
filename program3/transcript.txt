@@ -1,0 +1,12 @@
+GOOD! DUT.DM1.Core[33] =  64 CoreOut[          0] =  64
+GOOD! DUT.DM1.Core[34] =  32 CoreOut[          1] =  32
+GOOD! DUT.DM1.Core[35] = 126 CoreOut[          2] = 126
+----------------------------------------------------------
+GOOD! DUT.DM1.Core[33] = 128 CoreOut[          3] = 128
+GOOD! DUT.DM1.Core[34] =  32 CoreOut[          4] =  32
+GOOD! DUT.DM1.Core[35] = 252 CoreOut[          5] = 252
+----------------------------------------------------------
+GOOD! DUT.DM1.Core[33] =  32 CoreOut[          6] =  32
+GOOD! DUT.DM1.Core[34] =  32 CoreOut[          7] =  32
+GOOD! DUT.DM1.Core[35] =  63 CoreOut[          8] =  63
+----------------------------------------------------------

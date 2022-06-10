@@ -18,9 +18,11 @@ timeunit 1ns;
 timeprecision 1ps;
 
 // To DUT Inputs
-bit Reset = 1'b1;
+bit Reset;
 bit Req;
 bit Clk;
+logic [7:0] CoreIn[99];
+logic [7:0] CoreOut[9];
 
 // From DUT Outputs
 wire Ack;              // done flag
@@ -35,33 +37,73 @@ TopLevel DUT (
 
 // This is the important part of the testbench, where logic might be added
 initial begin
-  #10 $displayh(DUT.DM1.Core[0],
-                DUT.DM1.Core[1],"_",
-                DUT.DM1.Core[2],
-                DUT.DM1.Core[3]);
-  #10 Reset = 'b0;
-  #10 Req   = 'b1;
+  int fd;
+  int track = 0;
 
-  // launch program in DUT
-  #10 Req = 0;
+  fd = $fopen("transcript.txt", "w");
+
+  // Read in test cases
+  $readmemh("prog3_input.hex", CoreIn);
+
+  // message = 10101010... pattern = 10101
+    CoreOut[0] = 64;
+    CoreOut[1] = 32;
+    CoreOut[2] = 126;
+
+    // message = 11111111... pattern = 11111
+    CoreOut[3] = 128;
+    CoreOut[4] = 32;
+    CoreOut[5] = 252;
+
+    // message = 11001100... pattern = 10011
+    CoreOut[6] = 32;
+    CoreOut[7] = 32;
+    CoreOut[8] = 63;
+
+  for (int count = 0; count < 99; count += 33) begin
+    #10 Reset = 1;
+    #10 Reset = 0;
+    #10 Req = 1;
+
+    // Preload memory
+    for (int i = 0; i < 33; i++) begin
+      DUT.DM1.Core[i] = CoreIn[count+i];
+    end
+
+    #10 Req = 0;
+    // Program running
+
+    wait(Ack);
+
+    // Analyze outputs
+    
+    if (DUT.DM1.Core[33] == CoreOut[track]) begin
+      $fdisplay(fd, "GOOD! DUT.DM1.Core[33] = %d CoreOut[%d] = %d", DUT.DM1.Core[33], track, CoreOut[track]);
+    end else begin
+      $fdisplay(fd, "FAILURE DUT.DM1.Core[33] = %d CoreOut[%d] = %d", DUT.DM1.Core[33], track, CoreOut[track]);
+    end
+
+    if (DUT.DM1.Core[34] == CoreOut[track + 1]) begin
+      $fdisplay(fd, "GOOD! DUT.DM1.Core[34] = %d CoreOut[%d] = %d", DUT.DM1.Core[34], track + 1, CoreOut[track + 1]);
+    end else begin
+      $fdisplay(fd, "FAILURE DUT.DM1.Core[34] = %d CoreOut[%d] = %d", DUT.DM1.Core[34], track+1, CoreOut[track+1]);
+    end
+
+    if (DUT.DM1.Core[35] == CoreOut[track + 2]) begin
+      $fdisplay(fd, "GOOD! DUT.DM1.Core[35] = %d CoreOut[%d] = %d", DUT.DM1.Core[35], track + 2, CoreOut[track + 2]);
+    end else begin
+      $fdisplay(fd, "FAILURE DUT.DM1.Core[35] = %d CoreOut[%d] = %d", DUT.DM1.Core[35], track+2, CoreOut[track+2]);
+    end
+
+    $fdisplay(fd, "----------------------------------------------------------");
+    
+
+    track += 3;
+  end
   
-  // Wait for done flag, then display results
-  wait (Ack);
-  #10 $display("------------------------------------------");
-  #10 $displayh(DUT.DM1.Core[0],
-                DUT.DM1.Core[1],"_",
-                DUT.DM1.Core[2],
-                DUT.DM1.Core[3]);
-      $display("last instruction = %d || sim time %t",DUT.PC1.ProgCtr,$time);
+  $fclose(fd);
+  $stop;
 
-  // Note: $stop acts like a breakpoint, pausing the simulation
-  // and allowing certain tools to interact with it more, in
-  // contrast to $finish, which ends the simulation.
-`ifdef __ICARUS__
-  #10 $finish;
-`else
-  #10 $stop;
-`endif
 end
 
 // This generates the system clock
