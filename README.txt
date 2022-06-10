@@ -9,6 +9,15 @@ explains how to run our assembler.py.
 Inside each of the program folders, you will find the SystemVerilog modules and
 some test benches (ALU_tb.sv, ProgCtr_tb.sv, TopLevel_tb.sv). Each program
 folder will also have its respective assembly and machine code text files.
+In the program1 and program2 folders, you will also find python scripts that
+we used for testing. The scripts generate ALL possible inputs and their
+respective expected outputs. The text files produced from these scripts were
+fed into the TopLevel_tb of each program and exhaustively tested. The programs
+passed ALL the tests! In the program3 file, you will find a prog3_input.hex
+file which is the input data we used to test our implementation with. Our
+program3 runs as expected with the test cases provided to it. All the
+transcripts for testing can be viewed in the transcript.txt files in each
+program directory.
 
 b. Explain which programs/features work, and which programs/features don't work.
 
