@@ -18,9 +18,12 @@ timeunit 1ns;
 timeprecision 1ps;
 
 // To DUT Inputs
-bit Reset = 1'b1;
+bit Reset;
 bit Req;
 bit Clk;
+logic [7:0] CoreIn[131072];
+logic [7:0] CoreOut[131072];
+bit[7:0] msw;
 
 // From DUT Outputs
 wire Ack;              // done flag
@@ -35,33 +38,50 @@ TopLevel DUT (
 
 // This is the important part of the testbench, where logic might be added
 initial begin
-  #10 $displayh(DUT.DM1.Core[0],
-                DUT.DM1.Core[1],"_",
-                DUT.DM1.Core[2],
-                DUT.DM1.Core[3]);
-  #10 Reset = 'b0;
-  #10 Req   = 'b1;
+    int fd;
 
-  // launch program in DUT
-  #10 Req = 0;
-  
-  // Wait for done flag, then display results
-  wait (Ack);
-  #10 $display("------------------------------------------");
-  #10 $displayh(DUT.DM1.Core[0],
-                DUT.DM1.Core[1],"_",
-                DUT.DM1.Core[2],
-                DUT.DM1.Core[3]);
-      $display("last instruction = %d || sim time %t",DUT.PC1.ProgCtr,$time);
+    fd = $fopen("transcript.txt", "w");
 
-  // Note: $stop acts like a breakpoint, pausing the simulation
-  // and allowing certain tools to interact with it more, in
-  // contrast to $finish, which ends the simulation.
-`ifdef __ICARUS__
-  #10 $finish;
-`else
-  #10 $stop;
-`endif
+    $readmemh("prog2_input.hex", CoreIn);
+    $readmemh("prog2_output.hex", CoreOut);
+    
+    // load DUT.DM1.Core memory
+    for (int count = 0; count < 131072; count += 30) begin
+      #10 Reset = 1;
+      #10 Reset = 0;
+      #10 Req = 1;
+      $fdisplay(fd, "Count = %d", count);
+      $fdisplay(fd, "");
+      // preloading Core memory
+      for (int i = 0; i < 30; i++) begin
+        DUT.DM1.Core[30+i] = CoreIn[count + i];
+      end
+
+      #10 Req = 0;
+      // program running
+
+      wait(Ack);
+
+      // Analyze outputs
+      for (int i = 0; i < 30; i++) begin
+        if (DUT.DM1.Core[i] == CoreOut[count+i]) begin
+          $fdisplay(fd, "DataMem[  %d] -> Good!", i);
+        end else begin
+          msw = DUT.DM1.Core[i+1];
+          if (msw == 'h80) begin
+            $fdisplay(fd, "DataMem[  %d] -> Good!", i);
+          end else begin
+             $fdisplay(fd, "DataMem[  %d] -> FAIL Expected: %h Received: %h", i, CoreOut[count+i], DUT.DM1.Core[i]);
+          end
+        end
+      end
+      $fdisplay(fd, "");
+      $fdisplay(fd, "--------------------------------------------------------");
+      $fdisplay(fd, "");
+    end
+
+    $fclose(fd);
+    $stop;
 end
 
 // This generates the system clock
