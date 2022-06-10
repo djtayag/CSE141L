@@ -149,7 +149,7 @@ MVFR R8
 MVTO R7
 STR R8			
 MVTO R3		
-LSRI #4			
+LSRI #1			
 LSLI #4		
 MVFR R9			
 MVTO R10		
